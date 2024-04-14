@@ -4,16 +4,16 @@ import { createUser } from '../util/auth';
 import LoadingOverlay from '../components/ui/LoadingOverlay';
 
 function SignupScreen() {
-  const [isAuthenticating, setIsAuthenticating] = useState(false)
+  const [isAuthenticating, setIsAuthenticating] = useState(false);
 
   async function signupHandler({ email, password }) {
-    setIsAuthenticating(true)
-    const response = await createUser(email, password);
+    setIsAuthenticating(true);
+    await createUser(email, password);
     setIsAuthenticating(false);
   }
 
-  if(isAuthenticating) {
-    return <LoadingOverlay />
+  if (isAuthenticating) {
+    return <LoadingOverlay message="Signing up..." />;
   }
 
   return <AuthContent onAuthenticate={signupHandler} />;
